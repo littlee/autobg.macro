@@ -1,0 +1,19 @@
+{
+  "name": "autobg.macro",
+  "version": "1.0.0",
+  "description": "a babel macro for `styled-components` which auto generate background-image, width, height CSS code",
+  "main": "index.js",
+  "keywords": [
+    "babel-plugin-macros",
+    "styled-components"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-plugin-macros": "^2.8.0",
+    "image-size": "^0.9.1"
+  }
+}
