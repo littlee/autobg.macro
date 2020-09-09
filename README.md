@@ -11,6 +11,7 @@ npm i -S autobg.macro
 ## Usage
 
 ```js
+import styled from 'styled-components/macro';
 import autobg from 'autobg.macro';
 
 const MyDiv = styled.div`
@@ -23,6 +24,7 @@ const MyDiv = styled.div`
 assuming the image file's dimension is 750x750, the code above with be compiled to
 
 ```js
+import styled from 'styled-components/macro';
 import autobg from 'autobg.macro';
 
 const MyDiv = styled.div`
@@ -38,7 +40,7 @@ const MyDiv = styled.div`
 
 ## Config
 
-- baseUrl (String): image size path resolving base URL, default `"./src"`
+- baseUrl (String): image path resolving base URL, default `"./src"`
 - vwBase (Number): px to vw transform base value, default `750`
 
 babel macros config can pass via babelMacros field in `package.json` file
