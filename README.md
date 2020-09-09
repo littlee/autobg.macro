@@ -35,3 +35,21 @@ const MyDiv = styled.div`
   color: red;
 `;
 ```
+
+## Config
+
+- baseUrl (String): image size path resolving base URL, default `"./src"`
+- vwBase (Number): px to vw transform base value, default `750`
+
+babel macros config can pass via babelMacros field in `package.json` file
+
+```json
+{
+  "babelMacros": {
+    "autoBg": {
+      "baseUrl": "./src",
+      "vwBase": 750
+    }
+  }
+}
+```
