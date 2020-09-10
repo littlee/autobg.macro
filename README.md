@@ -1,6 +1,6 @@
 # autobg.macro
 
-a babel macro for `styled-components` which auto generate background-image, width, height CSS code
+a babel macro which can auto-generate background-image, width (in vw), height (in vw) CSS code based on the given image path, usually used with `styled-components`
 
 ## Install
 
@@ -43,12 +43,12 @@ const MyDiv = styled.div`
 - baseUrl (String): image path resolving base URL, default `"./src"`
 - vwBase (Number): px to vw transform base value, default `750`
 
-babel macros config can pass via babelMacros field in `package.json` file
+example config using `babelMacros` field in `package.json` file, for more config detail, see https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/user.md#config
 
 ```json
 {
   "babelMacros": {
-    "autoBg": {
+    "autobg": {
       "baseUrl": "./src",
       "vwBase": 750
     }
