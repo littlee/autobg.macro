@@ -2,25 +2,17 @@ const { createMacro } = require('babel-plugin-macros');
 const imageSize = require('image-size');
 const path = require('path');
 
-const autoBg = createMacro(autoBgMacro, {
-  configName: 'autoBg'
+const autobg = createMacro(autobgMacro, {
+  configName: 'autobg'
 });
 
-module.exports = autoBg;
+module.exports = autobg;
 
 function vw(px, base = 750, unit = true) {
   return (Math.round(px) / base) * 100 + (unit ? 'vw' : '');
 }
 
 function getImgSysPath(baseUrl, filePath) {
-  /* 
-    ./path/to/img.png
-    ../../path/to/img.png
-    ~@/path/to/img.png (vue-cli alias)
-    ~path/to/img.png (cra with jsconfig)
-    =>
-    path/to/img.png
-   */
   const fixedPath = filePath
     .replace(/(\.{1,2})+\//g, '')
     .replace(/^~?@?\/?/, '');
@@ -32,7 +24,7 @@ const defaultConfig = {
   vwBase: 750
 };
 
-function autoBgMacro({ references, state, babel, config }) {
+function autobgMacro({ references, state, babel, config }) {
   const { default: defaultImport = [] } = references;
 
   function getArgPath(referencePath) {
@@ -61,6 +53,9 @@ function autoBgMacro({ references, state, babel, config }) {
     if (referencePath.parentPath.type === 'CallExpression') {
       if (referencePath === referencePath.parentPath.get('callee')) {
         const imgPath = getArgPath(referencePath);
+        if (/^http/.test(imgPath)) {
+          throw Error('image path should be relative');
+        }
         const imgSysPath = getImgSysPath(finalConfig.baseUrl, imgPath);
         const size = imageSize(imgSysPath);
         referencePath.parentPath.replaceWith(
@@ -75,10 +70,10 @@ function autoBgMacro({ references, state, babel, config }) {
           )
         );
       } else {
-        throw Error(`use this macro like: autoBg('path/to/img.png')`);
+        throw Error(`use this macro like: autobg('path/to/img.png')`);
       }
     } else {
-      throw Error(`use this macro like: autoBg('path/to/img.png')`);
+      throw Error(`use this macro like: autobg('path/to/img.png')`);
     }
   });
 }
