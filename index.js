@@ -61,7 +61,7 @@ function autobgMacro({ references, state, babel, config }) {
         referencePath.parentPath.replaceWith(
           valueToAstNode(
             [
-              `background-image: url("\${require('${imgPath}')}");`,
+              `background-image: url("\${require('${imgPath}')?.default}");`,
               `background-size: 100%;`,
               `background-repeat: no-repeat;`,
               `width: ${vw(size.width, finalConfig.vwBase)};`,

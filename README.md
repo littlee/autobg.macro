@@ -29,7 +29,7 @@ import autobg from 'autobg.macro';
 
 const MyDiv = styled.div`
   text-align: center;
-  background-image: url('${require('./path/to/img.png')}');
+  background-image: url('${require('./path/to/img.png')?.default}');
   background-size: 100%;
   background-repeat: no-repeat;
   width: 100vw;
