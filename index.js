@@ -12,10 +12,11 @@ function vw(px, base = 750, unit = true) {
   return (Math.round(px) / base) * 100 + (unit ? 'vw' : '');
 }
 
-function getImgSysPath(baseUrl, filePath) {
-  const fixedPath = filePath
-    .replace(/(\.{1,2})+\//g, '')
-    .replace(/^~?@?\/?/, '');
+function getImgSysPath(baseUrl, filePath, srcFile) {
+  if (/^\./.test(filePath)) {
+    return path.resolve(path.dirname(srcFile), filePath);
+  }
+  const fixedPath = filePath.replace(/^~?@?\/?/, '');
   return path.resolve(process.cwd(), baseUrl, fixedPath);
 }
 
@@ -56,7 +57,11 @@ function autobgMacro({ references, state, babel, config }) {
         if (/^http/.test(imgPath)) {
           throw Error('image path should be relative');
         }
-        const imgSysPath = getImgSysPath(finalConfig.baseUrl, imgPath);
+        const imgSysPath = getImgSysPath(
+          finalConfig.baseUrl,
+          imgPath,
+          state.file.opts.filename
+        );
         const size = imageSize(imgSysPath);
         referencePath.parentPath.replaceWith(
           valueToAstNode(
