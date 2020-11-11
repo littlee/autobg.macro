@@ -2,15 +2,17 @@
   "name": "autobg.macro",
   "version": "1.0.4",
   "description": "a babel macro which can auto-generate background-image, width, height CSS code based on the given image path, usually used with `styled-components`",
-  "main": "index.js",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "keywords": [
     "babel-plugin-macros",
     "styled-components"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "littlee",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/littlee/autobg.macro.git"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-plugin-macros": "^2.8.0",

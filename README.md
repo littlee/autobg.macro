@@ -25,7 +25,6 @@ assuming the image file's dimension is 750x750, the code above with be compiled 
 
 ```js
 import styled from 'styled-components/macro';
-import autobg from 'autobg.macro';
 
 const MyDiv = styled.div`
   text-align: center;
