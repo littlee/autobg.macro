@@ -41,6 +41,8 @@ const MyDiv = styled.div`
 
 - baseUrl (String): image path resolving base URL, default `"./src"`
 - vwBase (Number): px to vw transform base value, default `750`
+- esModule (Boolean): set this the same value as `url-loader` or `file-loader`, default: `true`
+  - use `false` when using `react-scripts < 4`
 
 example config using `babelMacros` field in `package.json` file, for more config detail, see https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/user.md#config
 
@@ -49,7 +51,8 @@ example config using `babelMacros` field in `package.json` file, for more config
   "babelMacros": {
     "autobg": {
       "baseUrl": "./src",
-      "vwBase": 750
+      "vwBase": 750,
+      "esModule": true
     }
   }
 }

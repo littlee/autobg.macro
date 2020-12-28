@@ -22,8 +22,13 @@ function getImgSysPath(baseUrl, filePath, srcFile) {
 
 const defaultConfig = {
   baseUrl: './src',
-  vwBase: 750
+  vwBase: 750,
+  esModule: true
 };
+
+const usageErr = Error(
+  `use \`autobg.macro\` this way: autobg('path/to/img.png')`
+);
 
 function autobgMacro({ references, state, babel, config }) {
   const { default: defaultImport = [] } = references;
@@ -66,7 +71,9 @@ function autobgMacro({ references, state, babel, config }) {
         referencePath.parentPath.replaceWith(
           valueToAstNode(
             [
-              `background-image: url("\${require('${imgPath}')?.default}");`,
+              `background-image: url("\${require('${imgPath}')${
+                finalConfig.esModule ? '?.default' : ''
+              }}");`,
               `background-size: 100%;`,
               `background-repeat: no-repeat;`,
               `width: ${vw(size.width, finalConfig.vwBase)};`,
@@ -75,10 +82,10 @@ function autobgMacro({ references, state, babel, config }) {
           )
         );
       } else {
-        throw Error(`use this macro like: autobg('path/to/img.png')`);
+        throw usageErr;
       }
     } else {
-      throw Error(`use this macro like: autobg('path/to/img.png')`);
+      throw usageErr;
     }
   });
 }
